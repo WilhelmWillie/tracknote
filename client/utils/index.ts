@@ -1,0 +1,1 @@
+export { default as authorizeSpotify } from './authorizeSpotify';
