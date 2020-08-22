@@ -1,0 +1,8 @@
+# lol what if i pushed node_modules that'd be hilarious
+node_modules/
+
+# i'm built different
+build/
+
+# don't leak
+.env

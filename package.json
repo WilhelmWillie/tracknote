@@ -1,0 +1,13 @@
+{
+  "name": "tracknote",
+  "version": "0.1.0",
+  "description": "simple annotated spotify playlists",
+  "main": "index.js",
+  "author": "Wilhelm Willie",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "client:start": "cd client && yarn start",
+    "server:start": "cd server && yarn start",
+    "db:start": "mongod --dbpath=./db"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "files": [
+    "src/index.ts",
+    "src/index.d.ts",
+    "src/spotify.d.ts"
+  ], 
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "rootDir": "./",
+    "outDir": "./build",
+    "esModuleInterop": true,
+    "strict": false
+  }
+}
