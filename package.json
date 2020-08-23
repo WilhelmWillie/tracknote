@@ -7,7 +7,11 @@
   "license": "GPL-3.0-or-later",
   "scripts": {
     "client:start": "cd client && yarn start",
+    "client:build": "cd client && yarn build",
+    "client:dev": "cd client && yarn dev",
     "server:start": "cd server && yarn start",
+    "server:build": "cd server && yarn build",
+    "server:dev": "cd server && yarn dev",
     "db:start": "mongod --dbpath=./db"
   }
 }
