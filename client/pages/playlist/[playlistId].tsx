@@ -20,8 +20,6 @@ const Playlist = () => {
           
           <p>{item.albumName}</p>
 
-          <p>{item.spotifyId}</p>
-
           {
             item.notes ? (
               <TrackNotes>
@@ -58,11 +56,16 @@ const Playlist = () => {
     <>
       <Head>
         <title>tracknotes</title>
+
+        <link rel="stylesheet" href="https://use.typekit.net/guu5uof.css" />
       </Head>
       
       <Layout header={PlaylistsHeader}>
-        <h2>{playlist?.info.name}</h2>
-        <p>{playlist?.info.description}</p>
+        <PlaylistsInfoHeader>
+          <YourPlaylistsHeading>{playlist?.info.name}</YourPlaylistsHeading>
+
+          <YourPlaylistsDescription>{playlist?.info.description}</YourPlaylistsDescription>
+        </PlaylistsInfoHeader>
 
         <PlaylistTracks>
           {tracks}
@@ -93,10 +96,16 @@ const PlaylistTracks = styled.ul`
 `;
 
 const Track = styled.div`
-  padding: 24px;
-  border: 1px solid #CCCCCC;
+  display: flex;
+  flex-direction: row;
   border-radius: 8px;
   margin-bottom: 24px;
+  color: #FFFFFF;
+
+  h3 {
+    font-weight: 600;
+    font-size: 18px;
+  }
 `;
 
 const TrackNotes = styled.ul`
@@ -108,6 +117,25 @@ const TrackNotes = styled.ul`
     padding: 8px;
     margin: 8px 0;
   }
+`;
+
+const PlaylistsInfoHeader = styled.div`
+  padding: 32px 0;
+  margin-bottom: 32px;
+`;
+
+const YourPlaylistsHeading = styled.h2`
+  font-size: 48px;
+  color: #FFFFFF;
+  font-weight: 700;
+`;
+
+const YourPlaylistsDescription = styled.p`
+  font-size: 20px;
+  font-weight: 300;
+  margin: 16px 0;
+  color: #FFFFFF;
+  line-height: 30px;
 `;
 
 export default Playlist;

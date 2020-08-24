@@ -22,7 +22,7 @@ const Layout : FunctionComponent<LayoutProps> = ({footer, header, children}) => 
 
 const Container = styled.div`
   width: 100;
-  max-width: 600px;
+  max-width: 1024px;
   margin: 32px auto;
 `;
 
