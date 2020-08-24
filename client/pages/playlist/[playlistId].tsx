@@ -15,19 +15,13 @@ const Playlist = () => {
   const tracks = useMemo(() => {
     return playlist?.tracks?.map(item => (
       <Track>
-        <div>
-          <h3>{item.name}</h3>
-          
-          <p>{item.albumName}</p>
+        <TrackSpotifyUri href={item.uri}>Listen</TrackSpotifyUri>
 
-          {
-            item.notes ? (
-              <TrackNotes>
-                {item.notes.map(note => <li>{note.content}</li>)}
-              </TrackNotes>
-            ) : null
-          }
-        </div>
+        <TrackName>{item.name}</TrackName>
+        
+        <TrackAlbum>{item.albumName}</TrackAlbum>
+
+        <TrackArtists>{item.artists.map(artist => {return artist.artistName}).join(', ')}</TrackArtists>
       </Track>
     ));
   }, [playlist])
@@ -46,11 +40,22 @@ const Playlist = () => {
     if (playlistId) fetchPlaylistData();
   }, [playlistId]);
 
-  const PlaylistsHeader = (
-    <Header>
-      <h1>tracknote</h1>
-    </Header>
-  )
+  const PlaylistsHeader = useMemo(() => (
+    <>
+      <Header />
+
+      <PlaylistInfo>
+        <PlaylistInfoImage>
+          <img src={playlist?.info.images[0]?.url} />
+        </PlaylistInfoImage>
+
+        <PlaylistInfoText>
+          <h2>{playlist?.info.name}</h2>
+          <p>{playlist?.info.description}</p>
+        </PlaylistInfoText>
+      </PlaylistInfo>
+    </>
+  ), [playlist?.info.name, playlist?.info.description, playlist?.info.images]);
   
   return (
     <>
@@ -60,13 +65,7 @@ const Playlist = () => {
         <link rel="stylesheet" href="https://use.typekit.net/guu5uof.css" />
       </Head>
       
-      <Layout header={PlaylistsHeader}>
-        <PlaylistsInfoHeader>
-          <YourPlaylistsHeading>{playlist?.info.name}</YourPlaylistsHeading>
-
-          <YourPlaylistsDescription>{playlist?.info.description}</YourPlaylistsDescription>
-        </PlaylistsInfoHeader>
-
+      <Layout header={PlaylistsHeader} fullWidthContainer noContainerMargin>
         <PlaylistTracks>
           {tracks}
         </PlaylistTracks>
@@ -74,6 +73,39 @@ const Playlist = () => {
     </>
   )
 }
+
+const PlaylistInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #2F3132;
+`;
+
+const PlaylistInfoImage = styled.picture`
+  max-width: 400px;
+  object-fit: cover;
+  margin-right: 32px;
+  img {
+    width: 100%;
+    display: block;
+  }
+`;
+
+const PlaylistInfoText = styled.div`
+  padding: 0 24px;
+
+  h2 {
+    font-size: 48px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 18px;
+  }
+
+  p {
+    font-size: 18px;
+    color: #FFFFFF;
+  }
+`;
 
 const PlaylistTracks = styled.ul`
   list-style: none;
@@ -98,14 +130,46 @@ const PlaylistTracks = styled.ul`
 const Track = styled.div`
   display: flex;
   flex-direction: row;
-  border-radius: 8px;
-  margin-bottom: 24px;
   color: #FFFFFF;
+  padding: 24px 32px;
+  border-bottom: 1px solid #353739;
+  align-items: center;
+  justify-content: space-between;
 
   h3 {
     font-weight: 600;
     font-size: 18px;
   }
+`;
+
+const TrackSpotifyUri = styled.a`
+  color: #FFFFFF;
+  text-decoration: none;
+  border: 1px solid #4DAA57;
+  padding: 16px;
+  border-radius: 999px;
+  flex-basis: 10%;
+  text-align: center;
+`;
+
+const TrackName = styled.h3`
+  flex-basis: 30%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+`;
+
+const TrackAlbum = styled.p`
+  flex-basis: 20%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+`;
+
+const TrackArtists = styled.p`
+  flex-basis: 20%;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const TrackNotes = styled.ul`
@@ -117,25 +181,6 @@ const TrackNotes = styled.ul`
     padding: 8px;
     margin: 8px 0;
   }
-`;
-
-const PlaylistsInfoHeader = styled.div`
-  padding: 32px 0;
-  margin-bottom: 32px;
-`;
-
-const YourPlaylistsHeading = styled.h2`
-  font-size: 48px;
-  color: #FFFFFF;
-  font-weight: 700;
-`;
-
-const YourPlaylistsDescription = styled.p`
-  font-size: 20px;
-  font-weight: 300;
-  margin: 16px 0;
-  color: #FFFFFF;
-  line-height: 30px;
 `;
 
 export default Playlist;

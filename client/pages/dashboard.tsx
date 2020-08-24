@@ -21,7 +21,7 @@ const Playlists = () => {
             </a>
           </Link>
           
-          <p>{item.description}</p>
+          <p>{item.description.substring(0, 40)}{item.description.length > 40 ? '...' : null}</p>
         </div>
       </PlaylistListItem>
     ));

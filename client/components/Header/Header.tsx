@@ -1,14 +1,17 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 
-const Header = ({ children }) => {
+const Header = ({ children } : { children?: ReactElement }) => {
   return (
     <HeaderWrapper>
       <HeaderContainer>
-        <HeaderLogo>TrackNote</HeaderLogo>
+        <Link href='/' passHref>
+          <HeaderLogo>TrackNote</HeaderLogo>
+        </Link>
 
         <HeaderNav>
-          <HeaderNavItem>Dashboard</HeaderNavItem>
-          <HeaderNavItem>Log-out</HeaderNavItem>
+          <Link href='/dashboard' passHref><HeaderNavItem>Dashboard</HeaderNavItem></Link>
+          <Link href='/logout' passHref><HeaderNavItem>Log-out</HeaderNavItem></Link>
         </HeaderNav>
       </HeaderContainer>
     </HeaderWrapper>
@@ -47,6 +50,8 @@ const HeaderNav = styled.div`
 const HeaderNavItem = styled.a`
   margin: 0 14px;
   font-size: 14px;
+  text-decoration: none;
+  color: #FFFFFF;
 `;
 
 export default Header;

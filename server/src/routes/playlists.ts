@@ -61,6 +61,7 @@ router.get('/:playlistId', spotifyAuthMiddleware, async (req, res) => {
         name: playlistName,
         description: playlistDescription,
         uri: playlistUri,
+        images: playlistImages,
       } = spotifyPlaylistData;
 
       return res.json({
@@ -69,7 +70,8 @@ router.get('/:playlistId', spotifyAuthMiddleware, async (req, res) => {
             id: playlistId,
             name: playlistName,
             description: playlistDescription,
-            uri: playlistUri
+            uri: playlistUri,
+            images: playlistImages,
           },
           tracks
         }
