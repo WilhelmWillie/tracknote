@@ -37,9 +37,11 @@ const HeaderContainer = styled.div`
   padding: 24px 0;
 `;
 
-const HeaderLogo = styled.h1`
+const HeaderLogo = styled.a`
   font-weight: 700;
   font-size: 20px;
+  color: #FFFFFF;
+  text-decoration: none;
 `;
 
 const HeaderNav = styled.div`

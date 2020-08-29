@@ -22,6 +22,8 @@ const Playlist = () => {
         <TrackAlbum>{item.albumName}</TrackAlbum>
 
         <TrackArtists>{item.artists.map(artist => {return artist.artistName}).join(', ')}</TrackArtists>
+
+        <TrackNotesButton hasComments={item.notes.length > 0}>💬</TrackNotesButton>
       </Track>
     ));
   }, [playlist])
@@ -172,15 +174,26 @@ const TrackArtists = styled.p`
   overflow: hidden;
 `;
 
-const TrackNotes = styled.ul`
-  padding: 0;
-  list-style: none;
+const TrackNotesButton = styled.button<{
+  hasComments?: boolean;
+}>`
+  font-size: 16px;
+  background: transparent;
+  border: 1px solid #CCCCCC;
+  border-radius: 999px;
+  width: 48px;
+  height: 48px;
+  ${({hasComments}) => hasComments ? `opacity: 1` : `opacity: 0.12`};
 
-  li {
-    border: 1px solid #DDDDDD;
-    padding: 8px;
-    margin: 8px 0;
+  &:hover {
+    background: #CCCCCC;
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
   }
 `;
+
 
 export default Playlist;
